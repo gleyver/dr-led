@@ -35,7 +35,7 @@
     </div>
 
     <div class="form-group">
-      <label class="col-md-4 control-label" for="quantidade">Data Entrada</label>  
+      <label class="col-md-4 control-label" for="quantidade">Data Entrada</label>
         <div class="col-md-4">
             <input name="created_at" value="{{ old('created_at') }}" id="datetime" type="datetime-local" placeholder="Insira um valor" class="form-control input-md" required>
         </div>
@@ -48,6 +48,14 @@
             <input id="valor" name="quantidade" value="{{ old('quantidade') }}" type="text" placeholder="Insira quantidade do produto" class="form-control input-md" required>
         </div>
     </div>
+
+{{-- 
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="valor">Valor Venda</label>  
+        <div class="col-md-4">
+            <input id="valor" name="valor" value="{{ old('valor') }}" type="number" placeholder="Insira o valor do produto" class="form-control input-md" required>
+        </div>
+    </div>     --}}
 
     <!-- Button -->
     <div class="form-group">

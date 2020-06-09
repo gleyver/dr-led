@@ -35,18 +35,10 @@
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Produtos <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('Listar Produtos') }}">Listar Produtos</a></li>
-                            <li><a href="{{ route('Cadastrar Produto') }}">Cadastrar Produto</a></li>
-                        </ul>
+                        <a href="{{ route('Listar Produtos') }}" class="nav-link"> Produtos </a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorias <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="{{ route('Listar Categorias') }}">Listar Categorias</a></li>
-                          <li><a href="{{ route('Cadastrar Categoria') }}">Cadastrar Categoria</a></li>
-                        </ul>
+                        <a href="{{ route('Listar Categorias') }}" class="nav-link"> Categorias </a>
                     </li>  
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Destaques <span class="caret"></span></a>
@@ -56,44 +48,22 @@
                         </ul>
                     </li>    
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Entradas <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('Listar Entradas') }}">Listar Entradas</a></li>
-                            <li><a href="{{ route('Cadastrar Entrada') }}">Cadastrar Entrada</a></li>
-                        </ul>
+                        <a href="{{ route('Listar Entradas') }}" class="nav-link"> Entradas </a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Saídas <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('Listar Saidas') }}">Listar Saídas</a></li>
-                        </ul>
+                        <a href="{{ route('Listar Saidas') }}" class="nav-link"> Saidas </a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Vendas <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('Listar Vendas') }}">Listar Vendas</a></li>
-                            <li><a href="{{ route('Cadastrar Venda') }}">Cadastrar Venda</a></li>
-                        </ul>
+                        <a href="{{ route('Listar Vendas') }}" class="nav-link"> Vendas </a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clientes <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('Listar Clientes') }}">Listar Clientes</a></li>
-                            <li><a href="{{ route('Cadastrar Cliente') }}">Cadastrar Cliente</a></li>
-                        </ul>
+                        <a href="{{ route('Listar Clientes') }}" class="nav-link"> Clientes </a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Relatórios <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('Listar Relatorios') }}">Listar Relatorios</a></li>
-                        </ul>
+                        <a href="{{ route('Listar Relatorios') }}" class="nav-link"> Relatorios </a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Fornecedores <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('Listar Fornecedores') }}">Listar Fornecedores</a></li>
-                            <li><a href="{{ route('Cadastrar Fornecedor') }}">Cadastrar Fornecedor</a></li>
-                        </ul>
+                        <a href="{{ route('Listar Fornecedores') }}" class="nav-link"> Fornecedor </a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -106,7 +76,7 @@
               </div><!--/.nav-collapse -->
             </div><!--/.container-fluid -->
       </nav>
-  
+        
         @yield('conteudo')
 
         <footer class="bs-footer" role="contentinfo">
