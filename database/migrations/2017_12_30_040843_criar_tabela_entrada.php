@@ -16,6 +16,8 @@ class CriarTabelaEntrada extends Migration
         Schema::create('entradas', function (Blueprint $table) {
             $table->increments('id_entrada');
             $table->integer('quantidade'); 
+            $table->double('valor_compra', 8, 2);
+            $table->double('valor_venda', 8, 2); 
             $table->integer('fk_produto')->unsigned();
             $table->foreign('fk_produto')->references('id_produto')->on('produtos');
             $table->timestamps();

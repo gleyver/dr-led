@@ -66,11 +66,11 @@
                                 </div>
                                 <div class="col-md-2">
                                     <label>Valor</label>
-                                    <input type="text" class="form-control input-md" id="valor{{$cont}}" disabled="" value="{{ $ps->valor }}">
+                                    <input type="text" class="form-control input-md" id="valor{{$cont}}" disabled="" value="{{ $ps->valor_venda }}">
                                 </div>
                                 <div class="col-md-2">
                                     <label>Sub Valor</label>
-                                    <input type="text" class="form-control input-md subtotal" value="{{$ps->valor * $ps->quantidade}}" id="subtotal{{$cont}}" disabled="">
+                                    <input type="text" class="form-control input-md subtotal" value="{{$ps->valor_venda * $ps->quantidade}}" id="subtotal{{$cont}}" disabled="">
                                 </div> 
                                 <div class="col-md-1">
                                     <label>Deletar</label>

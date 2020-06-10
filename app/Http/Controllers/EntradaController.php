@@ -16,7 +16,10 @@ class EntradaController extends Controller
         // $produtos = Produto::all();
         $produtos = Produto
         ::join('entradas', 'produtos.id_produto', '=', 'entradas.fk_produto')
-        ->select('entradas.id_entrada','produtos.path_image as imagens','produtos.codigo_produto','produtos.descricao', 'produtos.valor', 'entradas.created_at','entradas.quantidade')
+        ->select('entradas.id_entrada', 'produtos.path_image as imagens',
+                 'produtos.codigo_produto', 'produtos.descricao',
+                 'entradas.valor_compra', 'entradas.valor_venda',
+                 'entradas.created_at', 'entradas.quantidade')
         ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
         ->get();
 
@@ -28,7 +31,9 @@ class EntradaController extends Controller
         // $produtos = Produto::all();
         $produtos = Produto
         ::join('entradas', 'produtos.id_produto', '=', 'entradas.fk_produto')
-        ->select('produtos.codigo_produto','produtos.descricao', 'produtos.valor', 'entradas.created_at','entradas.quantidade')
+        ->select('produtos.codigo_produto', 'produtos.descricao', 
+                 'produtos.valor', 'entradas.created_at',
+                 'entradas.quantidade')
         ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
         ->get();
 
@@ -80,7 +85,7 @@ class EntradaController extends Controller
 
         $entrada = Entrada::find($id_entrada);
         $params = Request::all();
-        $params["created_at"] = date("Y-m-d H:i:s",strtotime($params["created_at"]));
+        $params["created_at"] = date("Y-m-d H:i:s", strtotime($params["created_at"]));
         $entrada->update($params);
 
         Request::session()->flash('message.level', 'success');

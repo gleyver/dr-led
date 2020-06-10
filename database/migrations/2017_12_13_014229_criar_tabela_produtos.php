@@ -16,8 +16,8 @@ class CriarTabelaProdutos extends Migration
         Schema::create('produtos', function (Blueprint $table) {
             $table->increments('id_produto');
             $table->string('descricao');
-            $table->double('valor', 8, 2); 
-            $table->double('valor_compra', 8, 2); 
+            // $table->double('valor', 8, 2); 
+            // $table->double('valor_compra', 8, 2); 
             $table->integer('fk_categoria')->unsigned();
             $table->foreign('fk_categoria')->references('id_categoria')->on('categorias');
             $table->boolean('destaque');

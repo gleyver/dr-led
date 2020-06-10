@@ -49,13 +49,20 @@
         </div>
     </div>
 
-{{-- 
     <div class="form-group">
-        <label class="col-md-4 control-label" for="valor">Valor Venda</label>  
+        <label class="col-md-4 control-label" for="valor">Valor Compra</label>
         <div class="col-md-4">
-            <input id="valor" name="valor" value="{{ old('valor') }}" type="number" placeholder="Insira o valor do produto" class="form-control input-md" required>
+            <input id="valor" name="valor_compra" value="{{ old('valor') }}" type="number" placeholder="Insira o valor do produto" class="form-control input-md" required>
         </div>
-    </div>     --}}
+    </div>
+
+    <!-- Esse valor da venda, será dado na entrada para o cara poder modificar -->
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="valor">Valor Venda</label>
+        <div class="col-md-4">
+            <input id="valor" name="valor_venda" value="{{ old('valor') }}" type="number" placeholder="Insira o valor de venda produto" class="form-control input-md" required>
+        </div>
+    </div>
 
     <!-- Button -->
     <div class="form-group">

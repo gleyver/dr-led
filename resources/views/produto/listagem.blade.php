@@ -46,7 +46,7 @@
             <a href="/Produtos/mostrar/{{ $p->id_produto }}" style="margin-right:5px"><span class="glyphicon glyphicon-pencil"></span></a>
             <a href="/Produtos/remove/{{ $p->id_produto }}}"><span class="glyphicon glyphicon-trash"></span></a>
           </td>
-          <!-- <td>{!! QrCode::size(150)->generate("purchasestore.com.br/".$p->id_produto); !!}</td> -->
+          <!-- <td>{!! QrCode::size(150)->generate("facebook.com/".$p->id_produto); !!}</td> -->
         </tr>
       @endforeach
     </tbody>

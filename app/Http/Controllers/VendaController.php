@@ -15,7 +15,7 @@ class VendaController extends Controller
 {
     public function listarVenda(){
 
-        $vendas = DB::select( DB::raw("SELECT v.id_venda,v.valor_venda,v.desconto,v.divulgacao,
+        $vendas = DB::select( DB::raw("SELECT v.id_venda, v.valor_venda,v.desconto,v.divulgacao,
                                               v.porcentagem,v.online,v.created_at,c.nome, v.troca,
                                               v.tipo_pagamento
                                        FROM vendas v
@@ -25,7 +25,18 @@ class VendaController extends Controller
     }
 
     public function novo(){
-        $produtos = Produto::all();
+        $produtos = Produto
+        ::leftJoin('entradas', 'produtos.id_produto', '=', 'entradas.fk_produto')
+        ->leftJoin(DB::raw('(select produtos.id_produto, sum(saidas.quantidade) as quantidadeSaida
+                            from saidas
+                            inner join produtos on produtos.id_produto = saidas.fk_produto
+                            group by produtos.id_produto) as temp'), 'temp.id_produto', '=', 'produtos.id_produto')
+        ->join('categorias', 'categorias.id_categoria', '=', 'produtos.fk_categoria')
+        ->select('produtos.id_produto', 'produtos.codigo_produto', 'produtos.descricao', 'entradas.valor_venda as valor', DB::raw('sum(entradas.quantidade) as quantidadeEntrada'),'temp.quantidadeSaida','categorias.nome','produtos.path_image as imagens')
+        ->groupBy('produtos.descricao', 'produtos.codigo_produto', 'entradas.valor_venda', 'produtos.id_produto', 'categorias.nome', 'produtos.path_image', 'temp.quantidadeSaida')
+        ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
+        ->orderBy('produtos.id_produto','ASC')
+        ->get();
     	$clientes = Cliente::all();
         return view('venda.formulario')->with(['produtos' => $produtos,'clientes' => $clientes]);
     }
@@ -77,7 +88,8 @@ class VendaController extends Controller
         $produtosSaida = Produto
         ::join('saidas','saidas.fk_produto', '=', 'produtos.id_produto')
         ->join('vendas', 'vendas.id_venda', '=', 'saidas.fk_venda')
-        ->select('produtos.descricao','produtos.id_produto','produtos.valor','saidas.quantidade','produtos.codigo_produto','saidas.id_saida','saidas.fk_venda')
+        ->join('entradas', 'produtos.id_produto', '=', 'entradas.fk_produto')
+        ->select('produtos.descricao','produtos.id_produto','entradas.valor_venda','saidas.quantidade','produtos.codigo_produto','saidas.id_saida','saidas.fk_venda')
         ->where('saidas.fk_venda','=',$venda->id_venda)
         ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
         ->get();

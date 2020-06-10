@@ -15,17 +15,19 @@ class ProdutoController extends Controller
 
         $produtos = Produto
         ::leftJoin('entradas', 'produtos.id_produto', '=', 'entradas.fk_produto')
-        ->leftJoin(DB::raw('(select produtos.id_produto,sum(saidas.quantidade) as quantidadeSaida
-                            from saidas 
+        ->leftJoin(DB::raw('(select produtos.id_produto, sum(saidas.quantidade) as quantidadeSaida
+                            from saidas
                             inner join produtos on produtos.id_produto = saidas.fk_produto
                             group by produtos.id_produto) as temp'), 'temp.id_produto', '=', 'produtos.id_produto')
         ->join('categorias', 'categorias.id_categoria', '=', 'produtos.fk_categoria')
-        ->select('produtos.id_produto','produtos.codigo_produto','produtos.descricao', 'produtos.valor',DB::raw('sum(entradas.quantidade) as quantidadeEntrada'),'temp.quantidadeSaida','categorias.nome','produtos.path_image as imagens')
-        ->groupBy('produtos.descricao','produtos.codigo_produto','produtos.valor','produtos.id_produto','categorias.nome','produtos.path_image','temp.quantidadeSaida')
+        ->select('produtos.id_produto', 'produtos.codigo_produto', 'produtos.descricao', 'entradas.valor_venda as valor', DB::raw('sum(entradas.quantidade) as quantidadeEntrada'),'temp.quantidadeSaida','categorias.nome','produtos.path_image as imagens')
+        ->groupBy('produtos.descricao', 'produtos.codigo_produto', 'entradas.valor_venda', 'produtos.id_produto', 'categorias.nome', 'produtos.path_image', 'temp.quantidadeSaida')
         ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
         ->orderBy('produtos.id_produto','ASC')
         ->get();
 
+
+        // die(dd($produtos));
     	return view('produto.listagem')->with(['produtos' => $produtos]);
     }
 
@@ -36,18 +38,18 @@ class ProdutoController extends Controller
     }
 
     public function adiciona(ProdutosRequest $request, ImageRepository $repo){
-
         if ($request->hasFile('primaryImage')) {
             $request['path_image'] = $repo->saveImage($request->primaryImage, 'produtos', 250);
         }
 
         Produto::create($request->all());
-
+        
         Request::session()->flash('message.level', 'success');
         Request::session()->flash('message.content', 'Produto Adicionado com Sucesso!');
 		
 		return redirect()->action('ProdutoController@listar');
-	}
+    }
+    
 
 	public function remove($id_produto){
 
