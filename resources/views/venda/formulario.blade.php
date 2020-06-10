@@ -31,7 +31,6 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="produto">Código/Nome do Produto</label>
                         <div class="col-md-3">
-                            {{ $produtos}}
                             <select id="categoria" class="form-control">
                                 
                                 @foreach($produtos as $p)

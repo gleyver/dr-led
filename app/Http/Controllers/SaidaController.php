@@ -16,7 +16,8 @@ class SaidaController extends Controller
 
         $produtos = Produto
         ::join('saidas', 'produtos.id_produto', '=', 'saidas.fk_produto')
-        ->select('saidas.id_saida','produtos.path_image as imagens','produtos.codigo_produto','produtos.descricao', 'produtos.valor', 'saidas.created_at','saidas.quantidade','saidas.fk_venda')
+        ->join('entradas', 'produtos.id_produto', '=', 'entradas.fk_produto')
+        ->select('saidas.id_saida','produtos.path_image as imagens','produtos.codigo_produto','produtos.descricao', 'entradas.valor_venda', 'saidas.created_at','saidas.quantidade','saidas.fk_venda')
         ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
         ->get();
 

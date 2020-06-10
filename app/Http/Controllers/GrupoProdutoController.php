@@ -99,13 +99,13 @@ class GrupoProdutoController extends Controller
                ->select('produtos.id_produto',
                         'produtos.codigo_produto',
                         'produtos.descricao',
-                        'produtos.valor',
+                        'entradas.valor_venda',
                         'grupo_produtos.nome',
                         DB::raw('sum(entradas.quantidade) as quantidadeEntrada'),
                         'temp.quantidadeSaida')
                ->groupBy('produtos.descricao',
                          'produtos.codigo_produto',
-                         'produtos.valor',
+                         'entradas.valor_venda',
                          'produtos.id_produto',
                          'grupo_produtos.nome',
                          'temp.quantidadeSaida')

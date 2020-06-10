@@ -29,7 +29,7 @@
           <td>{{ $p->codigo_produto }}</td>
           <td id="imagem">{!! $p->imagens ? "<img width=\"150\" src=\"$p->imagens\">" : 'Sem Foto' !!}</td>
           <td>{{ $p->descricao }}</td>
-          <td>R$ {{ $p->valor }}</td>
+          <td>R$ {{ $p->valor_venda }}</td>
           <td>{{ date('d/m/Y', strtotime($p->created_at)) }}</td>
           <td>{{ date('H:i:s', strtotime($p->created_at)) }}</td>
           <td>{{ $p->quantidade }}</td>
